@@ -1,0 +1,41 @@
+apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: git2consul
+spec:
+  selector:
+    matchLabels:
+      app: git2consul
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: git2consul
+    spec:
+      containers:
+      - name: git2consul
+        image: amitrepo/git2consul3:0.12.13
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: CONSUL_ENDPOINT
+#          value: 172.30.106.215
+          value: consul.glt-dev.svc.cluster.local
+        - name: CONSUL_PORT
+          value: "8500"
+#        - name: TOKEN
+#          valueFrom:
+#            secretKeyRef:
+#              name: consul-token
+#              key: consul-token
+#        - name: CONFIG_KEY
+#          value: glp-uat/git2consul/config
+#        volumeMounts:
+#          - name: config
+#            mountPath: /etc/git2consul.d/
+#      volumes:
+#          - name: config
+#            configMap:
+#              name: git2consul
