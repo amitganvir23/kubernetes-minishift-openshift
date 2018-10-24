@@ -1,0 +1,26 @@
+{
+    "version": "1.0",
+    "logger": {
+        "name": "git2consul-dev",
+        "streams": [{
+                "level": "trace",
+                "stream": "process.stdout"
+            },
+            {
+                "level": "debug",
+                "type": "rotating-file",
+                "path": "/var/log/git2consul/git2consul.log"
+            }
+        ]
+    },
+    "max_sockets": 1,
+    "repos": [{
+        "name": "glt-project",
+        "url": "git@github.com:amitganvir23/mytest.git",
+        "branches": ["glt-test"],
+        "hooks": [{
+            "type": "polling",
+            "interval": "1"
+        }]
+    }]
+}
