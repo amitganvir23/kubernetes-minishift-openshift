@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: glt-consul
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: server.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: consul
+          servicePort: 8500

@@ -1,0 +1,10 @@
+{
+  "acl_datacenter": "glt-non-prod",
+  "datacenter":"glt-non-prod",
+  "acl_default_policy":"deny",
+  "acl_down_policy":"deny",
+  "acl_master_token": "abc69de1-9eaf-465b-bb6c-1d317c4daf9a",
+  "acl_agent_master_token": "abc69de1-9eaf-465b-bb6c-1d317c4daf9a",
+  "acl_agent_token": "abc69de1-9eaf-465b-bb6c-1d317c4daf9a",
+  "encrypt": "cg8StVXbQJ0gPvMd9o7yrg=="
+}
