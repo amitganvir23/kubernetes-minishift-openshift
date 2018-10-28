@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: git2consul-qa
-        image: amitrepo/git2consul:0.12.13
+        image: amitrepo/git2consul2:0.12.13
         resources:
           requests:
             cpu: 100m
@@ -25,11 +25,11 @@ spec:
           value: consul.glt-consul.svc.cluster.local
         - name: CONSUL_PORT
           value: "8500"
-#        - name: TOKEN
-#          valueFrom:
-#            secretKeyRef:
-#              name: consul-token
-#              key: consul-token
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: consul-token
+              key: consul-token
 #        - name: CONFIG_KEY
 #          value: glt-uat/git2consul/config
         volumeMounts:

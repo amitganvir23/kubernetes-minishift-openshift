@@ -14,7 +14,6 @@ RUN apk --update add nodejs git openssh ca-certificates && \
 # id_rsa
 COPY id_rsa /root/.ssh/
 COPY entrypoint.sh /
-#COPY config.json /etc/git2consul.d/
 
 
 # URL to clone & Branch name is replaced in entrypoint

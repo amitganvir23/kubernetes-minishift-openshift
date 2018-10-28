@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: git2consul-dev
-        image: amitrepo/git2consul:0.12.13
+        image: amitrepo/git2consul2:0.12.13
         resources:
           requests:
             cpu: 100m

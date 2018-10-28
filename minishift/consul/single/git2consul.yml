@@ -31,7 +31,7 @@ spec:
 #              name: consul-token
 #              key: consul-token
 #        - name: CONFIG_KEY
-#          value: glp-uat/git2consul/config
+#          value: glt-uat/git2consul/config
 #        volumeMounts:
 #          - name: config
 #            mountPath: /etc/git2consul.d/

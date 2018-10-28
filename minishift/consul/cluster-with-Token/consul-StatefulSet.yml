@@ -56,7 +56,7 @@ spec:
       labels:
         app: consul
     spec:
-#      serviceAccountName: consul-serviceaccount
+      serviceAccountName: consul-serviceaccount
 #      affinity:
 #        podAntiAffinity:
 #          requiredDuringSchedulingIgnoredDuringExecution:
