@@ -1,0 +1,10 @@
+{
+  "kind": "Namespace",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "glp-dev",
+    "labels": {
+      "name": "glp-dev"
+    }
+  }
+}

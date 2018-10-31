@@ -1,0 +1,19 @@
+>oc get scc
+>oc describe scc restricted
+>oc adm policy add-scc-to-user anyuid -z default
+
+GLP-50582-RegistrarJiraIssues
+
+oc login -u system:admin
+> oc new-project glp-qa --description="glp-qa" --display-name="glp-qa" 
+> oc get projects 
+> oc project glp-qa
+
+>oc get scc
+>oc describe scc restricted
+>oc adm policy add-scc-to-user anyuid -z default
+
+> oc create -f nginx.yml
+> oc get pods
+
+[jenkins@ip-172-168-0-148 ~]$ kubectl  -n glp-consul get StatefulSet
