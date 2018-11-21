@@ -1,0 +1,103 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  name: consul2
+  labels:
+    app: consul2
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8500
+    name: consul2
+    targetPort: 8500
+    nodePort: 30002
+  selector:
+    app: consul2
+---
+kind: StatefulSet
+apiVersion: apps/v1beta1
+metadata:
+  name: consul
+spec:
+  serviceName: consul2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: consul2
+    spec:
+      serviceAccountName: consul-serviceaccount2
+      terminationGracePeriodSeconds: 10
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: consul2
+        image: consul:1.0.2
+        env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+        ports:
+            - containerPort: 8300
+              name: server
+            - containerPort: 8301
+              name: serflan-tcp
+              protocol: "TCP"
+            - containerPort: 8301
+              name: serflan-udp
+              protocol: "UDP"
+            - containerPort: 8302
+              name: serfwan-tcp
+              protocol: "TCP"
+            - containerPort: 8302
+              name: serfwan-udp
+              protocol: "UDP"
+            - containerPort: 8400
+              name: rpc-port
+            - containerPort: 8500
+              name: api-port
+            - containerPort: 8600
+              name: consuldns-tcp
+              protocol: "TCP"
+            - containerPort: 8600
+              name: consuldns-udp
+              protocol: "UDP"
+        resources:
+          limits:
+            cpu: "100m"
+        args:
+                - "consul"
+                - "agent"
+                - "-advertise=$(POD_IP)"
+                - "-bind=0.0.0.0"
+                - "-bootstrap-expect=1"
+                - "-retry-join=consul-0.consul.glt-consul.svc.cluster.local"
+                - "-client=0.0.0.0"
+                - "-domain=cluster.local"
+                - "-config-file=/consul/myconfig/server.json"
+                - "-data-dir=/consul/data"
+                - "-server"
+                - "-rejoin"
+                - "-ui"
+                - "-disable-host-node-id"
+        volumeMounts:
+          - name: config
+            mountPath: /consul/myconfig/
+        lifecycle:
+          preStop:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - consul leave
+      volumes:
+        - name: config
+          secret:
+            secretName: consul2
