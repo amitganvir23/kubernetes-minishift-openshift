@@ -1,16 +1,15 @@
 ##### Variables
-namespace=glt-consul
-sa_name=consul-serviceaccount
-acl_token=consul-token
-config_acl=consul
-config_dev=git2consul-dev
-config_qa=git2consul-qa
+namespace=glt-consul2
+sa_name=consul-serviceaccount2
+acl_token=consul-token2
+config_acl=consul2
+config_dev=git2consul-dev2
+
 
 #=========== 
 
 ##### Deleting all the resource of Consul and git2consul
 kubectl delete -f consul-StatefulSet.yml -n ${namespace}
-kubectl delete -f consul-service.yml -n ${namespace}
 
 ##### Deleting service account of consul
 kubectl delete sa ${sa_name} -n ${namespace}

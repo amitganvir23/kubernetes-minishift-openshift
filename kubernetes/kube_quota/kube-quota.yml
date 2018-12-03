@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: quota-limit
+spec:
+spec:
+  hard:
+    persistentvolumeclaims: "60"
+    pods: "100"
+    replicationcontrollers: "20"
+    resourcequotas: "1"
+    secrets: "6"
+    services: "10"

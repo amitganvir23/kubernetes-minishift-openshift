@@ -1,0 +1,10 @@
+
+#### To create secret using anyfile and it convert default in base64 format. File could be Private_kye, CA_Certificate, anything.
+#kubectl -n <Your_Namespace> create secret generic <Your_Sec_name>  --from-file=<Source_File>
+kubectl -n glt-qa create secret generic git-private-key --from-file=./CA.crt
+
+#### To Creating Configmap for git2consul to access json file in container
+#kubectl -n <Your_Namespace> create configmap <Your_Config_File_Name>  --from-literal=message='<Your_Config_File_Name>' --from-file=<Source_File>
+kubectl -n glt-qa create configmap git2consul-dev2 --from-literal=message='git2consul-dev2' --from-file=glt-dev/config.json
+
+$ kubectl.exe edit quota
