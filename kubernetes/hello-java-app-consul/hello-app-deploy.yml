@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  name: hello2-srv
+  labels:
+    app: hello2-srv
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8082
+    name: hello2
+    targetPort: 8082
+    nodePort: 31006
+  selector:
+    app: hello2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello2
+    spec:
+      containers:
+      - name: hello2
+        image: amitrepo/envconsul-java-app-hello2:0.0.2
+        ports:
+        - containerPort: 8082

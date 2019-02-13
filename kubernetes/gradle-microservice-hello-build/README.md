@@ -61,6 +61,11 @@ amit.ganvir@NAG1-LHP-N06546 MINGW64 /c/github-mine/gradle-project/hello
 $
 
 Step9: If you want to test your application then try to run below command to an application on your local machine.
+Note: if dont specify server port in application.properties then it will take 8080 port or you can pass the paramter "-Dserver.port=<PORT>" to run app forcefully to another port even if we specified port in appication.properites file.
+
 $ java -jar build/libs/hello-0.0.1-SNAPSHOT.jar
+OR
+$ java -Dserver.port=8082 -jar build/libs/hello-0.0.1-SNAPSHOT.jar
 
 Step10: Now you can verify your application.
+http://127.0.0.1:8081
